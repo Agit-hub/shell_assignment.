@@ -1,0 +1,174 @@
+1.1
+Ada-macbook:Shell_Assignment schoolada$ ls
+Ada-macbook:Shell_Assignment schoolada$ 
+
+I am given the location of the terminal window that I am using (my laptop is called “Ada-macbook”, I named the folder for today’s assignments for this week  as “Shell_Assignment” and “schooled” is the specific user sign-in that I am using on my laptop.
+
+1.2
+What options do you need to specify to list the size of files and directories in human-readable form in a long listing format? 
+to find file size: 
+-l
+
+to find directories:
+d     Directory.
+
+The file mode printed under the -l option consists of the entry type, owner permissions, and group permissions.  The entry type character describes the type of file, as follows:
+
+b     Block special file.
+c     Character special file.
+d     Directory.
+l     Symbolic link.
+s     Socket link.
+p     FIFO.
+-     Regular file.
+
+If the -l option is given, the following information is displayed for each file: file mode, number of links, owner name, group name, number of bytes in the file, abbreviated month, day-of-month file was last modified, hour file last modified, minute file last modified, and the path-name.
+
+Try this command out, and describe what difference you see in the output when adding these options to ls.
+It lists the contents of the folder:
+
+Ada-macbook:Shell_Assignment schoolada$ ls -l
+total 1144
+-rw-r--r--@ 1 schoolada  staff  326158 Jan 11 11:21 Shell_assignment.pdf
+-rwx------@ 1 schoolada  staff  200513 Jan 11 11:30 shell_assignment.pages
+Ada-macbook:Shell_Assignment schoolada$ ls -d
+.
+
+Similar to above, use ls to list the contents of the current folder, along with human-readable filesizes, sorted by filesize. What command did you use?
+Ada-macbook:Shell_Assignment schoolada$ ls -a -S
+Shell_assignment.pdf	.
+shell_assignment.pages	..
+Ada-macbook:Shell_Assignment schoolada$
+
+2.1
+→ Have a look at the built-in documentation of pwd. What do these letters (probably) stand for?
+path name working directory
+
+→ What is your current working directory? Ada-macbook:Shell_Assignment schoolada$ pwd
+/Users/schoolada/Documents/lab course/Week 2/Shell_Assignment
+
+2.2
+→ What does cd (probably) stand for?
+current directory (?)
+
+Use a command to check what your current working directory is.
+Ada-macbook:Shell_Assignment schoolada$ ls -d
+.
+
+Run the command cd .. (bash) or sl .. (PowerShell) and check your current working directory. The .. is a literal and essential part of the command. What changed?
+Now it is showing the next folder it is within.
+
+Ada-macbook:Shell_Assignment schoolada$ cd ..
+Ada-macbook:Week 2 schoolada$
+
+Move back to the folder you started at. What command did you use? Confirm that this works by printing the working directory.
+cd, then \…\ to reset working directory to original path
+
+Set your shell’s working directory to the shell_magic folder. What command did you use?
+same again
+
+3.1
+Try to make an empty file in shell_magic called hello world (files don’t need to have an extension, although they often do). Show the command you used. Did you run into any problems? If so, what went wrong? What does this imply for best file naming practices?
+I first tried “touch hello world”, but that created two separate files, so I guess it is better to string them together in one name.
+
+touch hello_world
+
+3.2
+→ What does mkdir probably stand for? 
+mkdir probably stands for “make directory”
+
+Make a directory called hello_world in the shell_magic directory. What command did you use? 
+mkdir hello_world
+
+3.3
+→ What do the letters of this command (probably) stand for? 
+mv - probably stands for “move”
+
+Try to create an empty file called hello_world in the shell_magic directory. This probably didn’t work. Why?  already exists
+
+Create an empty file called hello_world.bfe (where bfe stands for Bogus File Extension) and rename it to hello_world.txt. Confirm with that everything worked out. What commands did you use? 
+touch hello_world.bfe
+mv hello_world.bfe hello_world.txt
+
+Move hello_world.txt to the hello_world folder. What command did you use?
+
+mv hello_world.txt hello_world
+
+Move this file back to where it came from (i.e. the shell_magic folder). What command did you use? 
+Ada-macbook:Shell_Magic schoolada$ ls
+Shell_assignment.pdf	hello_world		hello_world.txt		shell_assignment.pages	top_secret.txt
+Ada-macbook:Shell_Magic schoolada$ ls .
+Shell_assignment.pdf	hello_world		hello_world.txt		shell_assignment.pages	top_secret.txt
+
+. = current directory, so above 2 commands are the same
+
+Ada-macbook:Shell_Magic schoolada$ mv hello_world/hello_world.txt .
+Ada-macbook:Shell_Magic schoolada$ ls
+Shell_assignment.pdf	hello_world		hello_world.txt		shell_assignment.pages	top_secret.txt
+
+Now change your working directory to the hello_world folder, and move the hello_world.txt file into this folder, and again back to where it came from. Remember that . refers to the current directory, and .. refers to the parent directory (which the current directory is in). What commands did you use?
+
+cd hello_world
+mv ../hello_world.txt .
+
+3.4
+What is the difference between moving and copying a file?  moving: relocates where the file can be found
+copying: makes a duplicate of the copy
+
+From the shell_magic folder, copy the file hello_world.txt to the hello_world folder. What command did you use?  
+hello_world.txt hello_world
+
+From the shell_magic folder, copy the file hello_world.txt to the hello_world folder, but rename it to world_hello.txt. What command did you use?  
+cp hello_world.txt hello_world
+cd hello_world
+mv hello_world.txt world_hello.txt
+
+3.5
+The rm command can be used to remove files or directories. Have a look at its built-in documentation to see how to use this command. → What do the letters of this command (probably) stand for?
+
+stands for “Remove"
+
+The rm utility attempts to remove the non-directory type files specified on the command line.  If the permissions of the file do not permit writing, and the standard input device is a terminal, the user is prompted (on the standard error output) for confirmation.
+
+Ensure that you are in the shell_magic folder. Remove the hello_world.txt file that can be found in this directory. What command did you use?
+
+cd ..
+rm hello_world.txt
+
+Try to remove the whole hello_world folder in the same way you removed these files. What error message do you run into?  
+rm: hello_world: is a directory
+
+Remove the whole hello_world folder with any contents that may still be in it. Use the manual of the remove command to find out which options to use. What command did you use?  
+rm -d hello_world
+
+This is a good moment to delete any other files and folders that resulted from playing with the shell.  
+4.1
+→ What is cat most likely short for? 
+concatenate
+
+In the shell_magic directory, make a file called hello_world.txt. Output the contents of this file. What do you see, and why?
+
+only the file name because it is an empty file, or because it is a txt file instead of a folder
+
+hello_world.txt
+
+4.2
+
+What does the echo function do? 
+
+echo -- write arguments to the standard output
+
+Use echo with the > operator to make a file called file.txt containing the words file contents. Confirm this worked as expected. What commands did you use? 
+
+echo file contents > file.txt
+
+Use the >> operator to add the line more contents to file.txt. Check that this worked as intended. What commands did you use? 
+
+echo more contents >> file.txt
+
+4.3
+
+Let us start by recursively listing the contents of the home directory (on Windows, use C:\Users\your_username) and redirecting this to a file called home_contents.list, just to create a file with a lot of contents in it. What commands did you use? 
+
+come back to and check this!!!
+echo working directory > home_contents.list
